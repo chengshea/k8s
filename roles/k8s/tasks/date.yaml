@@ -1,0 +1,4 @@
+- name: date 
+ # shell: rm -rf /etc/localtime  &&  ln -sv /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&   timedatectl
+  shell: systemctl stop rsyslog  && cat /dev/null > /var/log/messages  && systemctl start rsyslog
+  register: info

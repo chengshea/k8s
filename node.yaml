@@ -1,0 +1,11 @@
+#  ansible-playbook   ./k8s.yaml 
+#async任务最大执行时间
+#根据poll设置的轮询时间间隔取获取脚本执行的状态
+
+# - k8s 默认搜索路径是~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles     - role  完全限定路径的角色
+---
+- hosts: k8s-node
+  become: yes
+  gather_facts: no
+  roles:
+    - role: '/home/cs/data/VM/k8s/roles/k8s'

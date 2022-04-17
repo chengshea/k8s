@@ -1,0 +1,56 @@
+./
+├── amd64   #各组件二进制执行程序v1.18
+│   ├── flanneld
+│   ├── kube-apiserver
+│   ├── kube-controller-manager
+│   ├── kubectl
+│   ├── kubelet
+│   ├── kube-proxy
+│   └── kube-scheduler
+├── cni  #容器网络插件
+│   ├── bin
+│   └── net.d
+├── docker  #docker私库密钥及配置
+│   ├── certs.d
+│   ├── daemon.json
+│   └── key.json
+├── docker-18.09.3.tgz  #docker二进制安装包
+├── env.sh   #公用变量参数
+├── etcd   #etcd程序
+│   ├── etcd
+│   └── etcdctl
+├── gen-etcd.sh  #生成etcd安装配置文件
+├── pem  #证书密钥
+│   ├── admin.csr
+│   ├── admin-csr.json
+│   ├── admin-key.pem
+│   ├── admin.pem
+│   ├── ca-config.json
+│   ├── ca.csr
+│   ├── ca-csr.json
+│   ├── ca-key.pem
+│   ├── ca.pem
+│   ├── kube-controller-manager.csr
+│   ├── kube-controller-manager-csr.json
+│   ├── kube-controller-manager-key.pem
+│   ├── kube-controller-manager.pem
+│   ├── kubelet.csr
+│   ├── kubelet-csr.json
+│   ├── kubelet-key.pem
+│   ├── kubelet.pem
+│   ├── kube-proxy.csr
+│   ├── kube-proxy-csr.json
+│   ├── kube-proxy-key.pem
+│   ├── kube-proxy.pem
+│   ├── kubernetes.csr
+│   ├── kubernetes-csr.json
+│   ├── kubernetes-key.pem
+│   ├── kubernetes.pem
+│   ├── kube-scheduler.csr
+│   ├── kube-scheduler-csr.json
+│   ├── kube-scheduler-key.pem
+│   └── kube-scheduler.pem
+└── readme
+
+
+链接: https://pan.baidu.com/s/1EazdFpiiUbCUJaWgk50m2w  密码: wcod

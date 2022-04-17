@@ -1,0 +1,60 @@
+#https://goharbor.io/docs/2.0.0/install-config/configure-https/
+
+
+生成CA证书私钥。
+
+openssl genrsa -out ca.key 4096
+
+生成CA证书。
+openssl req -x509 -new -nodes -sha512 -days 3650 \
+ -subj "/C=CN/ST=GD/L=SZ/O=cs/OU=shea/CN=k8s.org" \
+ -key ca.key \
+ -out ca.crt
+
+服务器  
+生成私钥。
+ openssl genrsa -out k8s.org.key 4096
+生成证书签名请求（CSR）。
+ openssl  req -sha512 -new \
+ -subj "/C=CN/ST=GD/L=SZ/O=cs/OU=shea/CN=k8s.org" \
+ -key k8s.org.key \
+ -out k8s.org.csr
+
+生成一个x509 v3扩展文件
+ cat > v3.ext <<-EOF
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1=k8s.org
+DNS.2=k8s
+DNS.3=k8s
+EOF
+
+
+使用该v3.ext文件为您的Harbor主机生成证书。
+openssl x509 -req -sha512 -days 3650 \
+    -extfile v3.ext \
+    -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -in k8s.org.csr \
+    -out k8s.org.crt
+
+
+Docker守护程序将.crt文件解释为CA证书，并将.cert文件解释为客户端证书
+    openssl x509 -inform PEM -in k8s.org.crt -out k8s.org.cert
+
+
+给Harbor和Docker
+cp yourdomain.com.crt /data/cert/
+cp yourdomain.com.key /data/cert/
+
+
+    cp yourdomain.com.cert /etc/docker/certs.d/yourdomain.com/
+cp yourdomain.com.key /etc/docker/certs.d/yourdomain.com/
+cp ca.crt /etc/docker/certs.d/yourdomain.com/
+
+
+systemctl restart docker

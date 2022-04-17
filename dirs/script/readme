@@ -1,0 +1,53 @@
+/opt/data/k8s/centos/
+├── [4.0K]  amd64
+│   ├── [ 34M]  flanneld
+│   ├── [105M]  kube-apiserver
+│   ├── [ 97M]  kube-controller-manager
+│   ├── [ 39M]  kubectl
+│   ├── [ 99M]  kubelet
+│   ├── [ 34M]  kube-proxy
+│   └── [ 38M]  kube-scheduler
+├── [4.0K]  cluster
+│   ├── [2.7K]  gen-kubelet.sh
+│   └── [1.4K]  gen-kube-proxy.sh
+├── [4.0K]  cni
+│   ├── [4.0K]  bin
+│   │   ├── [4.0M]  bandwidth
+│   │   ├── [4.4M]  bridge
+│   │   ├── [ 12M]  dhcp
+│   │   ├── [5.7M]  firewall
+│   │   ├── [3.3M]  flannel
+│   │   ├── [4.1M]  host-device
+│   │   ├── [3.6M]  host-local
+│   │   ├── [4.2M]  ipvlan
+│   │   ├── [3.4M]  loopback
+│   │   ├── [4.3M]  macvlan
+│   │   ├── [3.8M]  portmap
+│   │   ├── [4.4M]  ptp
+│   │   ├── [3.6M]  sbr
+│   │   ├── [3.1M]  static
+│   │   ├── [3.5M]  tuning
+│   │   └── [4.2M]  vlan
+│   └── [4.0K]  net.d
+│       └── [ 290]  10-flannel.conflist
+├── [4.0K]  config
+│   ├── [2.1K]  bootstrap.kubeconfig
+│   ├── [6.4K]  kube-controller-manager.kubeconfig
+│   ├── [6.1K]  kubectl.kubeconfig
+│   ├── [6.2K]  kubelet.kubeconfig
+│   ├── [6.3K]  kube-proxy.kubeconfig
+│   ├── [6.3K]  kube-scheduler.kubeconfig
+│   └── [  84]  token.csv
+├── [ 46M]  docker-18.09.3.tgz
+├── [1.1K]  env.sh
+├── [3.1K]  gen-config.sh
+├── [2.0K]  gen-etcd.sh
+├── [2.3K]  gen-flanneld.sh
+├── [4.5K]  gen-pem.sh
+├── [4.0K]  master
+│   ├── [5.1K]  gen-kube-apiserver.sh
+│   ├── [1.9K]  gen-kube-controller-manager.sh
+│   └── [1.3K]  gen-kube-scheduler.sh
+├── [2.1K]  mk-docker-opts.sh
+
+8 directories, 72 files

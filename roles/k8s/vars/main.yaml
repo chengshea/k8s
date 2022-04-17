@@ -1,0 +1,17 @@
+# 变量
+---
+keys:
+    env: /home/cs/data/VM/k8s/dirs/script/env.sh
+    hosts: /home/cs/data/VM/k8s/dirs/script/ip/hosts
+    set: /home/cs/data/VM/k8s/dirs/script/ip/setHostname.sh
+    etcd: /home/cs/data/VM/k8s/dirs/script/etcd-cluster.sh
+    gen_etcd: /home/cs/data/VM/k8s/dirs/script/gen-etcd.sh
+    flanneld: /home/cs/data/VM/k8s/dirs/script/gen-flanneld.sh
+    config: /home/cs/data/VM/k8s/dirs/script/gen-config.sh
+    token: /home/cs/data/VM/k8s/dirs/script/config/token.csv
+    master: /home/cs/data/VM/k8s/dirs/script/master/gen-*.sh
+    cluster: /home/cs/data/VM/k8s/dirs/script/cluster/gen-*.sh
+    subenv: /home/cs/data/VM/k8s/dirs/script/subnet.env
+    mk: /home/cs/data/VM/k8s/dirs/script/mk-docker-opts.sh
+    pem: /home/cs/data/VM/k8s/dirs/script/pem/*.pem
+    kubelconf: /home/cs/data/VM/k8s/dirs/script/config/kubelet.kubeconfig

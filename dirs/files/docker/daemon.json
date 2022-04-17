@@ -1,0 +1,6 @@
+
+{
+ "insecure-registries":["https://k8s.org"]
+
+}
+

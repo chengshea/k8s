@@ -1,0 +1,83 @@
+https://github.com/kubernetes/kubernetes/tags
+v=1.18.11
+
+https://storage.googleapis.com/kubernetes-release/release/$v/kubernetes-server-linux-amd64.tar.gz
+
+#mkdir -p ./roles/k8s/{tasks,library,files,vars}
+
+检查剧本语法
+ansible-playbook --syntax-check ./k8s.yaml
+
+模拟执行剧本
+ansible-playbook   -C
+
+
+
+
+===========================================================================
+vagrant plugin install vagrant-vbguest
+下载vbguest插件，当启动时自动安装Guest Additions
+--mount: unknown filesystem type 'vboxsf'
+
+或者准备nfs供挂载
+
+=========================================================================
+1.创建虚拟机
+vagrant  up
+
+
+
+
+2.宿主机执行
+/home/cs/data/VM/k8s/dirs/script/gen-pem.sh
+/home/cs/data/VM/k8s/dirs/script/token.sh
+宿主机需要有  cfssl
+
+3.执行ansible
+无关注释内容不用放开
+
+ansible-playbook  ./k8s.yaml  -v
+/home/cs/data/VM/k8s/k8s.yaml
+放开/tasks/main.yaml  01 开始到结束里面注释内容
+sed -n '/01 start/,+5 s/^#//'p ./main.yaml 
+
+/home/cs/data/VM/k8s/master.yaml
+放开/tasks/main.yaml  02 开始到结束里面注释内容
+sed -n '/01 start/,+5 s/^/#/'p ./main.yaml
+sed -n '/02 start/,+3 s/^#//'p ./main.yaml 
+
+/home/cs/data/VM/k8s/node.yaml
+放开/tasks/main.yaml  03 开始到结束里面注释内容
+sed -n '/02 start/,+3 s/^/#/'p ./main.yaml
+sed -n '/03 start/,+3 s/^#//'p ./main.yaml 
+
+
+#####
+token.scv
+
+
+  kubectl create clusterrolebinding \
+     kubelet-bootstrap \
+     --clusterrole=system:node-bootstrapper \
+     --user=system:kubelet
+
+##
+
+kubectl get csr
+
+kubectl  get csr | awk -F ' ' 'NR>1{print$1}'
+ kubectl  get csr | grep Pending |  cut -d ' ' -f 1
+
+
+
+kubectl certificate approve ...
+
+
+
+
+
+
+
+
+
+

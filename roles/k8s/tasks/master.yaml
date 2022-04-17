@@ -1,0 +1,36 @@
+# ../master
+# ../master
+# ├── gen-kube-apiserver.sh
+# ├── gen-kube-controller-manager.sh
+# └── gen-kube-scheduler.sh
+
+      
+- name: copy master
+  copy:
+    src: "{{item}}"
+    dest: /opt/kubernetes/
+    mode: '0744'
+  with_fileglob: 
+    -  "{{ keys.master }}"
+
+- name: run apiserver
+  shell: cd /opt/kubernetes && bash ./gen-kube-apiserver.sh && cp -r ./kube-apiserver/kube-apiserver.service /usr/lib/systemd/system  && systemctl daemon-reload
+
+- name: service kube-apiserver start
+  service:
+     name=kube-apiserver  state=restarted  enabled=yes
+
+
+- name:  run controller-manager 
+  shell: cd /opt/kubernetes && bash ./gen-kube-controller-manager.sh && cp -r ./kube-controller-manager/kube-controller-manager.service /usr/lib/systemd/system  && systemctl daemon-reload
+- name: service controller-manager start
+  service:
+     name=kube-controller-manager  state=restarted  enabled=yes
+
+
+- name:  run scheduler
+  shell: cd /opt/kubernetes && bash ./gen-kube-scheduler.sh && cp -r ./kube-scheduler/kube-scheduler.service /usr/lib/systemd/system  && systemctl daemon-reload
+- name: service kube-scheduler start
+  service:
+     name=kube-scheduler  state=restarted  enabled=yes
+

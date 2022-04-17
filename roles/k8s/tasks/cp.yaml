@@ -1,0 +1,53 @@
+# - name: Run copy
+#   copy:
+#     src: '{{ item.src }}'
+#     dest: '{{ item.dest }}'
+#     force: yes
+#     mode: '0644'
+#   with_items:
+#     - { src: '{{keys.hosts}}' , dest: '/etc/hosts' }
+#     - { src: '{{keys.set}}' , dest: '/opt/kubernetes/'}
+#     - { src: '{{keys.env}}' , dest: '/opt/kubernetes/' }
+#     - { src: '{{keys.token}}' , dest: '/opt/kubernetes/' }
+#     - { src: '{{keys.config}}' , dest: '/opt/kubernetes/' }
+#     - { src: '{{keys.mk}}' , dest: '/opt/kubernetes/' }
+#     - { src: '{{keys.flanneld}}' , dest: '/opt/kubernetes/' }
+# - name: Run set hosts shell 
+#   shell: cd /opt/kubernetes  && bash  ./gen-config.sh  && bash  ./setHostname.sh
+
+
+
+
+
+
+
+######token不一致
+# - name: mkdir config
+#   file: path=/opt/kubernetes/config state=directory
+# - name: copy token
+#  copy: src="/home/cs/data/registry/k8s-rep/centos/k8s/config/token.csv" dest="/opt/kubernetes/config/"
+# - name: service kube-apiserver start
+#   service:
+#      name=kube-apiserver  state=restarted  enabled=yes
+
+# - name: copy kubelet
+#   copy: src="/home/cs/data/registry/k8s-rep/centos/k8s/config/kubelet.kubeconfig" dest="/opt/kubernetes/config/"
+# - name: copy bootstrap
+#   copy: src="/home/cs/data/registry/k8s-rep/centos/k8s/config/bootstrap.kubeconfig" dest="/opt/kubernetes/config/"
+# - name: service kubelet start
+#   service:
+#      name=kubelet  state=restarted  enabled=yes
+
+
+
+
+
+###证书宿主机或本地生成,需要工具cfssl
+- name:  cp pem
+  copy:
+    src: "{{item}}"
+    dest: /opt/kubernetes/pem
+    force: yes
+    mode: '0664'
+  with_fileglob: 
+     -  "{{ keys.pem }}" 

@@ -1,0 +1,12 @@
+- name:  copy flanneld
+  copy:
+    src: "{{ keys.flanneld }}"
+    dest: /opt/kubernetes/
+    mode: '0644'
+
+- name: run flanneld
+  shell: cd /opt/kubernetes && bash  ./gen-flanneld.sh && cp -r ./flanneld/flanneld.service /usr/lib/systemd/system  && systemctl daemon-reload
+
+- name: service flanneld start
+  service:
+     name=flanneld  state=started  enabled=yes

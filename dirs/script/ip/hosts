@@ -1,0 +1,26 @@
+127.0.0.1	localhost  setHostname
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+192.168.56.1    ui.k8s.cn k8s.org jenkins.k8s.cn  gogs.k8s.cn
+
+192.168.56.107  nfs
+
+
+## vagrant-hostmanager-start
+192.168.56.101	master01
+
+192.168.56.102	master02
+
+192.168.56.103	master03
+
+192.168.56.104	node04
+
+192.168.56.105	node05
+
+192.168.56.106	node06
+
+## vagrant-hostmanager-end

@@ -1,0 +1,68 @@
+# - name: Install the correct web server for Debian
+#   import_tasks: debian.yml
+#   when: ansible_facts['os_family']|lower == 'debian'
+
+
+###修正系统时间
+# - name: set date
+#   import_tasks: date.yaml
+# - name:  service info
+#   debug: msg="{{ info.stdout_lines}}"
+
+
+
+###etcd启动初始数据
+# - name: etcd
+#   import_tasks: etcd.yaml
+# - name: print df_out
+#   debug: msg="{{ etcd_val.stdout }}"
+# - name: flanneld
+#   import_tasks: flanneld.yaml
+#   when: etcd_val.stdout.find('121.21.0.0/16') != -1
+     ## etcd_val.stdout.find('3.2.26') != -1
+     ## etcd_val.stdout.find('success') != -1
+
+# - name: check service
+#   import_tasks: service.yaml
+# - name:  service result
+#   debug: msg="{{ result.results}}" #failed
+#   #   msg: "{{ item }}" #failed
+  # with_subelements:
+  #       - "{{ result.results }}"
+
+
+
+
+####执行ansible-playbook  ./k8s.yaml  -v
+###############01 start#################
+- name: cp file
+  import_tasks: cp.yaml
+
+# - name: flanneld
+#   import_tasks: flanneld.yaml  
+###############01 end#################
+
+## ansible-playbook  ./master.yaml  -v
+###############02 start#################
+  ####该task使用主机组待解决
+# - name: master
+#   import_tasks: master.yaml
+###############02 start#################
+
+
+
+####执行 ansible-playbook  ./node.yaml  -v
+###############03 start#################
+# - name: node
+#   import_tasks: node.yaml  
+###############03 start#################
+
+
+# - name: master-p
+#   import_tasks: master-node.yaml  
+
+
+
+# - name: display vars
+#   import_tasks: k.yaml
+#   debug: msg="{{info}}"
